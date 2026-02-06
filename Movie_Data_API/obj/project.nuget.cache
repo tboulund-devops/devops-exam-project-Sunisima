@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "DryhotEiO/g=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\allan\\RiderProjects\\devops-exam-project-Sunisima\\Movie_Data_API\\Movie_Data_API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\allan\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.11\\microsoft.aspnetcore.openapi.9.0.11.nupkg.sha512",
+    "C:\\Users\\allan\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
