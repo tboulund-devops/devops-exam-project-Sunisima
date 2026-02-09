@@ -1,0 +1,7 @@
+# IDE + build
+.vs/
+.idea/
+**/obj/
+**/bin/
+*.csproj.user
+*.suo
