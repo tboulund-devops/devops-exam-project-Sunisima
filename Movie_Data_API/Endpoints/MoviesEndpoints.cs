@@ -5,11 +5,11 @@ public static class MoviesEndpoints
 {
     public static void MapMoviesEndpoints(this WebApplication app)
     {
-        app.MapGet("/movies", async (IMoviesService moviesService) =>
+        app.MapGet("/movies", (IMoviesService moviesService) =>
         {
             try
             {
-                var movies = await moviesService.GetAllMoviesAsync();
+                var movies = moviesService.GetAllMovies();
                 return Results.Ok(movies);
             }
             catch (Exception ex)
@@ -23,14 +23,14 @@ public static class MoviesEndpoints
         .RequireAuthorization();
 
 
-        app.MapGet("/movies/{id}", async (IMoviesService moviesService, string id) =>
+        app.MapGet("/movies/{id}", async (IMoviesService moviesService, int id) =>
         {
             try
             {
                 var movie = await moviesService.GetMovieByIDAsync(id);
 
                 return movie is null
-                    ? Results.NotFound(new { Message = $"Movie withid {id} not found" })
+                    ? Results.NotFound(new { Message = $"Movie with id {id} not found" })
                     : Results.Ok(movie);
             }
             catch (Exception ex)

@@ -1,5 +1,8 @@
-﻿using Movie_Data_API.Services.DTOCollection.MoviesDTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using Movie_Data_API.DataLayer;
+using Movie_Data_API.Services.DTOCollection.MoviesDTOs;
 using Movie_Data_API.Services.Interfaces;
+using Movie_Data_API.Services.MapMovieDTOCollection;
 
 namespace Movie_Data_API.Services
 {
@@ -8,16 +11,23 @@ namespace Movie_Data_API.Services
     /// </summary>
     public class MoviesService : IMoviesService
     {
+        private readonly DBContext _Context;
 
+        public MoviesService(DBContext context)
+        {
+            _Context = context;
+        }
         /// <summary>
         /// Gets all movies from the database.
         /// </summary>
         /// <returns> a list of DisplayAllMoviesDTO </returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<List<DisplayAllMoviesDTO>> GetAllMoviesAsync()
+        public ICollection<MovieDisplayDTO> GetAllMovies()
         {
-            List<Movie> movies = await _moviesCollection.Find(_ => true).ToListAsync();
-            return movies.ConvertAll(movie => movie.MapMoviesDomainToDisplayAllMoviesDTO());
+            return _Context.Movies
+                .Include(r => r.Reviews)
+                .MapMoviesDomainToDMoviesDisplayDTO()
+                .ToList();
         }
 
         /// <summary>
@@ -25,10 +35,15 @@ namespace Movie_Data_API.Services
         /// </summary>
         /// <param name="id">The ID of the movie to retrieve.</param>
         /// <returns> A MovieDetailsDTO object if found, otherwise null. </returns>
-        public async Task<MovieDetailsDTO?> GetMovieByIDAsync(string id)
+        public async Task<MovieDetailsDTO?> GetMovieByIDAsync(int id)
         {
-            var movie = await _moviesCollection.
-                Find(movie => movie.Id == id).FirstOrDefaultAsync();
+            var movie = await _Context.Movies
+                .Include(r => r.Reviews)
+                    .ThenInclude(u => u.User)
+                .Include(a => a.Actors)
+                .Include(u => u.User)
+                .Include(g => g.Genres)
+                .FirstOrDefaultAsync(m => m.Movies_ID == id);
 
             return movie is null ? null : movie.MapMoviesDomainToMovieDetailsDTO();
         }
