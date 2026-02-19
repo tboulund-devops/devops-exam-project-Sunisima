@@ -434,3 +434,17 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Movie_Data_API/.vs/Movie_Data_API/v17/DocumentLayout.json
+/Movie_Data_API/.vs/Movie_Data_API/DesignTimeBuild/.dtbcache.v2
+/Movie_Data_API/.vs/Movie_Data_API/FileContentIndex/79e6d059-386c-4cef-9583-4e6864710bc2.vsidx
+/Movie_Data_API/.vs/Movie_Data_API/v17/.futdcache.v2
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.AssemblyInfo.cs
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.AssemblyInfoInputs.cache
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.csproj.AssemblyReference.cache
+/Movie_Data_API/obj/Debug/net9.0/rpswa.dswa.cache.json
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.GeneratedMSBuildEditorConfig.editorconfig
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.assets.cache
+/Movie_Data_API/.vs/ProjectEvaluation/movie_data_api.strings.v9.bin
+/Movie_Data_API/.vs/ProjectEvaluation/movie_data_api.projects.v9.bin
+/Movie_Data_API/.vs/ProjectEvaluation/movie_data_api.metadata.v9.bin
+/Movie_Data_API/.vs/Movie_Data_API/v17/.suo
