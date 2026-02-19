@@ -1,0 +1,62 @@
+name: workflow.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for accurate results of code analysis
+
+      - name: Install required tools # Write the commands to install ReportGenerator and Stryker into your pipeline.
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          dotnet tool install -g dotnet-stryker
+          dotnet tool install -g dotnet-sonarscanner
+
+      - name: Static Code Analysis
+        run: |
+          dotnet sonarscanner begin \
+            /k:"${{ vars.MOVIE_DATA_KEY }}" \
+            /d:sonar.host.url="${{ vars.MOVIE_DATA_URL }}" \
+            /d:sonar.token="${{ secrets.MOVIE_DATA_TOKEN }}" \
+            /d:sonar.coverageReportPaths="coverage-report/SonarQube.xml" \
+            /d:sonar.qualitygate.wait=true \
+            /d:sonar.qualitygate.timeout=300
+
+      - name: Build
+        run: dotnet build
+
+      - name: Run unit tests # Write a command to execute unit tests while collecting code coverage
+        run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
+
+      - name: Generate report # Use the ReportGenerator tool to generate a report from the code coverage results
+        run: reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:coverage-report -reporttypes:SonarQube
+
+      - name: Run Mutation Tests # Write a command to execute mutation tests using Stryker with a threshold of 80% mutation score
+        run: dotnet stryker --break-at 60
+
+      - name: Collect Coverage Report # Complete this step so it uploads the coverage report to the artifacts - make it run always even if previous steps fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-file
+          path: coverage-report
+
+      - name: Collect Stryker Report # Complete this step so it uploads the Stryker report to the artifacts - make it run always even if previous steps fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stryker-file
+          path: StrykerOutput
+
+      - name: Complete Static Code Analysis
+        run: |
+          dotnet sonarscanner end \
+            /d:sonar.token="${{ secrets.MOVIE_DATA_TOKEN }}"
+    
