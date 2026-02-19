@@ -432,3 +432,9 @@ FodyWeavers.xsd
 *.msp
 /Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.AssemblyInfo.cs
 /Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.AssemblyInfoInputs.cache
+/Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/CodeChunks.db-wal
+/Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/CodeChunks.db-shm
+/Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/CodeChunks.db
+/Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/SemanticSymbols.db
+/Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/SemanticSymbols.db-shm
+/Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/SemanticSymbols.db-wal
