@@ -446,3 +446,6 @@ FodyWeavers.xsd
 /Movie_Data_API/.vs/Movie_Data_API/CopilotIndices/17.14.1530.14912/SemanticSymbols.db-wal
 /Movie_Data_API/obj/*
 /Movie_Data_API/bin/*
+/Movie_Data_API/bin/Debug/net9.0/Movie_Data_API.dll
+/Movie_Data_API/bin/Debug/net9.0/Movie_Data_API.exe
+/Movie_Data_API/bin/Debug/net9.0/Movie_Data_API.pdb
