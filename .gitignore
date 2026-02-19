@@ -426,3 +426,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.AssemblyInfo.cs
+/Movie_Data_API/obj/Debug/net9.0/Movie_Data_API.AssemblyInfoInputs.cache
