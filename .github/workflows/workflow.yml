@@ -30,7 +30,7 @@ jobs:
             /d:sonar.qualitygate.timeout=300
 
       - name: Build
-        run: dotnet build
+        run: dotnet build ./Movie_Data_API
 
       - name: Run unit tests # Write a command to execute unit tests while collecting code coverage
         run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
