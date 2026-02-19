@@ -1,14 +1,22 @@
-﻿
+
 # User-specific files
 *.rsuser
+# ================================
+# IDE / editor
+# ================================
+.vs/
+.idea/
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 *.env
 
-# User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
+# ================================
+# Build output (.NET)
+# ================================
+bin/
+obj/
 
 # Mono auto generated files
 mono_crash.*
