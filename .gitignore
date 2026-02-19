@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.idea/.idea.devops-exam-project-Sunisima.dir/.idea
+/Movie_Data_API/.idea
+/Movie_Data_API/.vs/Movie_Data_API
+/Movie_Data_API/obj/Debug/net9.0
+/Movie_Data_API/obj
