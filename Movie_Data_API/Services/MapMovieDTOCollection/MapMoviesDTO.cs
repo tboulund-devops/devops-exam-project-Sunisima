@@ -46,5 +46,31 @@ namespace Movie_Data_API.Services.MapMovieDTOCollection
                 }).ToList()
             };
         }
+
+        public static Movie MapMovieCreateDTOToMovieDomain(this MovieCreateDTO movieCreateDTO)
+        {
+            return new Movie
+            {
+                Title = movieCreateDTO.Title,
+                Description = movieCreateDTO.Description,
+                Release_Date = movieCreateDTO.ReleaseDate,
+                User_ID = movieCreateDTO.User_ID,
+                Genres = movieCreateDTO.Genres,
+                Actors = movieCreateDTO.Actors
+            };
+        }
+
+        public static Movie MapMovieUpdateDTOToMovieDomain(this MovieUpdateDTO movieUpdateDTO)
+        {
+            return new Movie
+            {
+                Movies_ID = movieUpdateDTO.Movie_ID,
+                Title = movieUpdateDTO.Title,
+                Description = movieUpdateDTO.Description,
+                Release_Date = movieUpdateDTO.ReleaseDate,
+                Genres = movieUpdateDTO.Genres,
+                Actors = movieUpdateDTO.Actors
+            };
+        }
     }
 }

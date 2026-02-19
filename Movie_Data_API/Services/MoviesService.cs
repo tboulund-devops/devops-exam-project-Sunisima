@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Movie_Data_API.DataLayer;
+using Movie_Data_API.DataLayer.Entities;
 using Movie_Data_API.Services.DTOCollection.MoviesDTOs;
 using Movie_Data_API.Services.Interfaces;
 using Movie_Data_API.Services.MapMovieDTOCollection;
@@ -46,6 +47,32 @@ namespace Movie_Data_API.Services
                 .FirstOrDefaultAsync(m => m.Movies_ID == id);
 
             return movie is null ? null : movie.MapMoviesDomainToMovieDetailsDTO();
+        }
+
+        /// <summary>
+        /// Adds a new movie to the database using the provided MovieCreateDTO object.
+        /// </summary>
+        /// <param name="movieCreateDTO"></param>
+        /// <returns></returns>
+        public async Task AddMovieAsync(MovieCreateDTO movieCreateDTO)
+        {
+            Movie movie = movieCreateDTO.MapMovieCreateDTOToMovieDomain();
+            _Context.Movies.Add(movie);
+            await _Context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Updates the details of an existing movie asynchronously using the provided update data.
+        /// </summary>
+        /// <param name="movieUpdateDTO">An object containing the updated movie information. Cannot be null. The identifier within this object must
+        /// correspond to an existing movie in the database.</param>
+        /// <returns>A task that represents the asynchronous update operation.</returns>
+        public async Task UpdateMovieAsync(MovieUpdateDTO movieUpdateDTO)
+        {
+            Movie movie = movieUpdateDTO.MapMovieUpdateDTOToMovieDomain();
+            _Context.Movies.Update(movie);
+            _Context.Entry(movie).State = EntityState.Modified;
+            await _Context.SaveChangesAsync();
         }
     }
 }
